@@ -15,19 +15,21 @@ class EvalBook {
     }
 
     main() {
+        // get content through promise
         this.get(this.md)
             .then(data => this.process(data))
             .catch(reason => console.log(reason.message));
-
-        this.do_eval();
-        if ( typeof this.callback === 'function' ) {
-            this.callback.call();
-        }
     }
 
     process(data) {
+        // render the markdown
         this.render( data, this.wrapper );
+        // eval code blocks
         this.do_eval(this.wrapper);
+        // finally call user provided callback
+        if ( typeof this.callback === 'function' ) {
+            this.callback.call();
+        }
     }
 
     do_eval(el) {
@@ -35,8 +37,27 @@ class EvalBook {
         if ( container === null ) return false;
         const codes = container.querySelectorAll('code');
         codes.forEach(e => {
-            eval(e.textContent);
+            const fn = `(function() {${e.textContent}\n}())`;
+            this.write_results( eval(fn), e );
         });
+    }
+
+    write_results(result, el) {
+        let parent = el.parentNode;
+        if ( parent === null ) return;
+        if ( parent.tagName === 'PRE' ) {
+            // render tags in new P tag if surround by PRE tag
+            let display = document.createElement('p');
+            display.classList.add('result');
+            display.innerHTML = `Result: ${result}`;
+            parent.append(display);
+        } else {
+            // render inline
+            el.classList.add('result');
+            el.setAttribute('data-code', el.textContent);
+            el.innerHTML = `${result}`;
+        }
+        return;
     }
 
     async get (file) {
