@@ -12,4 +12,4 @@ var weird = 'weird.'
 console.log('This is ' + weird);
 ```
 
-Check the console and you'll see that code was executed.
+Check the console and you'll see that code was executed (evaluated).

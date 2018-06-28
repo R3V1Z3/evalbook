@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
+
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <title>EvalBook</title>
+</head>
+
+<body id="custom">
+
+    <!-- Outer wrapper -->
+    <div id="wrapper">
+    </div>
+
+    <script>
+
+        const gd = new EvalBook('#wrapper', {
+            title: 'EvalBook',
+            content: 'README.md',
+            callback: done
+        });
+
+        function done() {
+            //gd.status.log();
+            console.log('Callback executed.');
+        }
+
+    </script>
+</body>
+
+</html>
