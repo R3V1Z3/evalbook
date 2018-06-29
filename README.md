@@ -8,7 +8,7 @@ Dead simple, just fork the repo and edit this Markdown file. Any code blocks con
 
 ### Can I create multiple notebooks?
 
-Yes. Create new Markdown files in the root folder and access them using the 'content=filename' url parameter. Or just access the file directly at `yourrepo.github.io/filename`. A custom 404.html page will resolve the url and redirect it as needed.
+Yes. Create new Markdown files in the /pages/ folder and access them using the 'content=' url parameter. Or just access the file like so _ugotsta.github.io/evalbook/character_. A custom 404.html page will resolve the url and redirect it as needed.
 
 ## Code Examples
 
