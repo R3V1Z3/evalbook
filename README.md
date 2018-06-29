@@ -3,17 +3,6 @@ All the evil of JavaScript's eval() in a Markdown-powered notebook for GitHub Pa
 
 EvalBook is a Markdown notebook that executes JavaScript code blocks. Being hosted through GitHub Pages makes it super simple to fork and create a publicly accessible JavaScript notebook with eval powers.
 
-## How do I use it?
-Dead simple, just fork the repo and edit this Markdown file. Any code blocks containing JavaScript will be executed/evaluated.
-
-### Can I create multiple notebooks?
-
-Yes. Create new Markdown files and access them using the 'content=_yourfile_' url parameter.
-
-Or you can create files in the /pages/ folder and access them with a bare url slug, for example: _ugotsta.github.io/evalbook/character_.
-
-A custom 404.html page resolves the url and redirects it as needed.
-
 ## Code Examples
 
 Get return values rendered:
@@ -36,12 +25,22 @@ return params_string === '' ? "No query string found." : params_string;
 
 Inline execution is easily possible too. Check `return 'this'` out.
 
-Create objects too:
+Global 'q' object persists throughout code blocks:
 ```javascript
-const i = {
-  think: e => { return true; },
-  am: e => { return 'I exist.' ; }
-}
-if ( i.think() ) return i.am();
-
+q.wow = 'Wow!';
+return 'Wait for it...';
 ```
+
+Store data in 'q' and access it other blocks:
+```javascript
+return q.wow;
+```
+
+## How do I use it?
+Dead simple, just fork [the repo](github.com/Ugotsta/evalbook) and edit this Markdown file. Any code blocks containing JavaScript will be executed/evaluated.
+
+### Can I create multiple pages?
+
+Yes. Create new Markdown files and access them using the 'content=_yourfile_' url parameter.
+
+Alternatively, a custom 404.html page resolves the url and redirects as needed. So you can create files in the /pages/ folder and access them with a bare url slug, for example: _ugotsta.github.io/evalbook/character_.

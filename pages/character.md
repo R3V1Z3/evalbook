@@ -4,24 +4,34 @@ Your name is `return ['Heimrich', 'Flockdechle', 'Yan'][Math.floor(Math.random()
 
 Your Strength is:
 ```javascript
-return Math.floor( Math.random() * (18 - 3) + 3 );
+q.random = (low, hi) => {
+    return Math.floor( Math.random() * (hi - low) + low );
+}
+q.roll_attribute = (i) => {
+    let total = 0;
+    for ( var x = 0; x < i; x++ ) {
+        total += q.random(1, 6);
+    }
+    return total;
+}
+return q.roll_attribute(3);
 ```
 
 Your Dexterity is:
 ```javascript
-return Math.floor( Math.random() * (18 - 3) + 3 );
+return q.roll_attribute(3);
 ```
 
 Your Constitution is:
 ```javascript
-return Math.floor( Math.random() * (18 - 3) + 3 );
+return q.roll_attribute(3);
 ```
 
 Your Intelligence is:
 ```javascript
-return Math.floor( Math.random() * (18 - 3) + 3 );
+return q.roll_attribute(3);
 ```
 Your Wisdom is:
 ```javascript
-return Math.floor( Math.random() * (18 - 3) + 3 );
+return q.roll_attribute(3);
 ```

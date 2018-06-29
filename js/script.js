@@ -19,7 +19,7 @@ class EvalBook {
         let params = (new URL(location)).searchParams;
         if (params.has('content') ) this.md = params.get('content');
         // TODO: need error handler here to handle user providing content param that doesn't exist
-        
+
         // get content through promise
         this.get(this.md)
             .then(data => this.process(data))
