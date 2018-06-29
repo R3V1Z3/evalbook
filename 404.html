@@ -15,7 +15,6 @@
 	</section>
 
 	<script>
-        const re = new Redirect('pages', ['md']);
 		/**
 		 * Redirect
 		 * @param {string} folder is a folder name where contents might exist
@@ -85,7 +84,8 @@
                 q += `content=${this.folder}/${this.file}.md`;
                 location.href = 'index.html' + q;
             }
-		}
+        }
+        const re = new Redirect('pages', ['md']);
 	</script>
 
 </body>
