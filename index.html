@@ -23,18 +23,16 @@
     </div>
 
     <script>
-
-        const gd = new EvalBook('#wrapper', {
+        const ebook = new EvalBook('#wrapper', {
             title: 'EvalBook',
-            content: 'README.md',
+            content: 'README.md', // initial content to use if no content paramater is provided
             callback: done
         });
 
         function done() {
-            //gd.status.log();
+            // use this to execute any custom code after everything's rendered
             console.log('Callback executed.');
         }
-
     </script>
 </body>
 

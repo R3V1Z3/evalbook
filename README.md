@@ -6,24 +6,28 @@ EvalBook is a Markdown notebook that executes JavaScript code blocks. Being host
 ## How's it work?
 Dead simple, just fork the repo and edit this Markdown file. Any code blocks containing JavaScript will be executed/evaluated.
 
+### Can I create multiple notebooks?
+
+Yes. Create new Markdown files in the root folder and access them using the 'content=filename' url parameter. Or just access the file directly at `yourrepo.github.io/filename`. A custom 404.html page will resolve the url and redirect it as needed.
+
 ## Code Examples
 
 Get return values rendered:
 ```javascript
-const weird = 'weird.';
+var weird = 'weird.';
 return 'This is ' + weird;
 ```
 
-Full scope is available:
+Log messages to the console. If nothing is returned, nothing more is rendered.
 ```javascript
-return Math.floor( Math.random() * (18 - 3) + 3 );
+console.log('This was sent through second example.');
 ```
 
 Access URL parameters:
 ```javascript
 const params = (new URL(location)).searchParams;
 const params_string = params.toString();
-return params_string;
+return params_string === '' ? "No query string found." : params_string;
 ```
 
 Inline execution is easily possible too. Check `return 'this'` out.

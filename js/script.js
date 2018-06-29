@@ -15,6 +15,11 @@ class EvalBook {
     }
 
     main() {
+        // check if user provided a content url parameter
+        let params = (new URL(location)).searchParams;
+        if (params.has('content') ) this.md = params.get('content');
+        // TODO: need error handler here to handle user providing content param that doesn't exist
+        
         // get content through promise
         this.get(this.md)
             .then(data => this.process(data))
@@ -45,6 +50,7 @@ class EvalBook {
     write_results(result, el) {
         let parent = el.parentNode;
         if ( parent === null ) return;
+        if ( result === undefined ) return;
         if ( parent.tagName === 'PRE' ) {
             // render tags in new P tag if surround by PRE tag
             let display = document.createElement('p');

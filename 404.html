@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+
+	<header>
+		<h1>404</h1>
+		<p>Page not found.</p>
+	</header>
+
+	<section>
+		<p>Sorry, this page doesn't appear to exist yet.</p>
+	</section>
+
+	<script>
+        const re = new Redirect('.', ['md']);
+		/**
+		 * Redirect
+		 * @param {string} folder is a folder name where contents might exist
+		 * @param {array} extensions contains all extensions to try
+		 * @returns {object} new object
+		 */
+		class Redirect {
+			constructor(folder, extensions) {
+				this.folder = folder;
+				this.file = window.location.pathname.split('/').pop();
+				this.init(extensions);
+			}
+			init(extensions) {
+				const urls = this.prepare_urls(extensions);
+				this.get_files(urls);
+			}
+			// directs the loading process, preparing a list of urls to be used in promise chain
+			prepare_urls(extensions) {
+				var urls = [];
+				var RE = this;
+				extensions.forEach(ext => {
+					urls.push(`${RE.folder}/${RE.file}.${ext}`);
+				});
+				return urls;
+			}
+			// takes a series of urls and tries them until one loads succesfully
+			get_files(urls) {
+                if (urls.length < 1) return;
+                const file = this.file;
+				const url = urls.shift();
+				/* PROMISE CHAIN */
+				var RE = this;
+				this.get(url).then((response) => {
+					this.redirect(file);
+				}).catch(function (error) {
+					// continue checking for urls
+					RE.get_files(urls);
+				})
+			};
+			// promise based get
+			get(url) {
+				return new Promise(function (resolve, reject) {
+					const http = new XMLHttpRequest();
+					http.open('GET', url);
+					http.onload = function () {
+						if (http.status === 200) {
+							resolve(http.response);
+						} else {
+							reject(Error(http.status));
+						}
+					};
+					http.onerror = function () {
+						reject(Error("Error with request."));
+					};
+					http.send();
+				});
+            }
+            // handle redirection
+            redirect(file) {
+                // we'll now redirect
+                let params = (new URL(location)).searchParams;
+                let q = params.toString();
+                // add ? at start of parameter string
+                if (q.length > 0) q = '?' + q;
+                // add content parameter
+                if (q.length < 1) q = '?';
+                else q += '&';
+                q += `content=${file}.md`;
+                location.href = 'index.html' + q;
+            }
+		}
+	</script>
+
+</body>
+
+</html>
