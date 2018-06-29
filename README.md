@@ -3,12 +3,16 @@ All the evil of JavaScript's eval() in a Markdown-powered notebook for GitHub Pa
 
 EvalBook is a Markdown notebook that executes JavaScript code blocks. Being hosted through GitHub Pages makes it super simple to fork and create a publicly accessible JavaScript notebook with eval powers.
 
-## How's it work?
+## How do I use it?
 Dead simple, just fork the repo and edit this Markdown file. Any code blocks containing JavaScript will be executed/evaluated.
 
 ### Can I create multiple notebooks?
 
-Yes. Create new Markdown files in the /pages/ folder and access them using the 'content=' url parameter. Or just access the file like so _ugotsta.github.io/evalbook/character_. A custom 404.html page will resolve the url and redirect it as needed.
+Yes. Create new Markdown files and access them using the 'content=_yourfile_' url parameter.
+
+Or you can create files in the /pages/ folder and access them with a bare url slug, for example: _ugotsta.github.io/evalbook/character_.
+
+A custom 404.html page resolves the url and redirects it as needed.
 
 ## Code Examples
 

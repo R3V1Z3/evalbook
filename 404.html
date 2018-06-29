@@ -44,12 +44,11 @@
 			// takes a series of urls and tries them until one loads succesfully
 			get_files(urls) {
                 if (urls.length < 1) return;
-                const file = this.file;
 				const url = urls.shift();
 				/* PROMISE CHAIN */
 				var RE = this;
 				this.get(url).then((response) => {
-					this.redirect(file);
+					this.redirect();
 				}).catch(function (error) {
 					// continue checking for urls
 					RE.get_files(urls);
@@ -74,7 +73,7 @@
 				});
             }
             // handle redirection
-            redirect(file) {
+            redirect() {
                 // we'll now redirect
                 let params = (new URL(location)).searchParams;
                 let q = params.toString();
@@ -83,7 +82,7 @@
                 // add content parameter
                 if (q.length < 1) q = '?';
                 else q += '&';
-                q += `content=${file}.md`;
+                q += `content=${this.folder}/${this.file}.md`;
                 location.href = 'index.html' + q;
             }
 		}
