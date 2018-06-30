@@ -4,8 +4,8 @@ Your name is `return ['Heimrich', 'Flockdechle', 'Yan'][Math.floor(Math.random()
 
 Your Strength is:
 ```javascript
-q.random = (low, hi) => {
-    return Math.floor( Math.random() * (hi - low) + low );
+q.random = (lo, hi) => {
+    return Math.floor(Math.random() * hi) + lo;
 }
 q.roll_attribute = (i) => {
     let total = 0;
