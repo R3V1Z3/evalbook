@@ -43,7 +43,7 @@ no execution
 ```
 
 ## How do I use it?
-Dead simple, just fork [the repo](github.com/Ugotsta/evalbook) and edit this Markdown file. Any code blocks containing JavaScript will be executed/evaluated.
+Dead simple, just fork [the repo](https://github.com/Ugotsta/evalbook) and edit this Markdown file. Any code blocks containing JavaScript will be executed/evaluated.
 
 ### Can I create multiple pages?
 
