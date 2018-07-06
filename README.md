@@ -6,34 +6,40 @@ EvalBook is a Markdown notebook that executes JavaScript code blocks. Being host
 ## Code Examples
 
 Get return values rendered:
-```javascript
+```js
 var weird = 'weird.';
 return 'This is ' + weird;
 ```
 
 Log messages to the console. If nothing is returned, nothing more is rendered.
 ```javascript
-console.log('This was sent through second example.');
+console.log('Read this in the console.');
 ```
 
 Access URL parameters:
-```javascript
+```js
 const params = (new URL(location)).searchParams;
 const params_string = params.toString();
 return params_string === '' ? "No query string found." : params_string;
 ```
 
-Inline execution is easily possible too. Check `return 'this'` out.
+Inline execution is easily possible too. Check `js return 'this';` out.
 
-Global 'q' object persists throughout code blocks:
-```javascript
-q.wow = 'Wow!';
+Global 'thispage' object persists throughout code blocks:
+```js ohyeah
+thispage.wow = 'Wow!';
 return 'Wait for it...';
 ```
 
-Store data in 'q' and access it other blocks:
-```javascript
-return q.wow;
+Store data in 'thispage' and access it in other blocks:
+```js
+return thispage.wow;
+```
+
+Only JavaScript code blocks are executed:
+```
+dummy stuff here
+no execution
 ```
 
 ## How do I use it?

@@ -1,37 +1,39 @@
 # Character Sheet
 
-Your name is `return ['Heimrich', 'Flockdechle', 'Yan'][Math.floor(Math.random() * 3)]`.
+Your name is `js return ['Heimrich', 'Flockdechle', 'Yan'][Math.floor(Math.random() * 3)]`.
 
 Your Strength is:
-```javascript
-q.random = (lo, hi) => {
+```js
+thispage.random = (lo, hi) => {
     return Math.floor(Math.random() * hi) + lo;
 }
-q.roll_attribute = (i) => {
+
+thispage.roll_attribute = (i) => {
     let total = 0;
     for ( var x = 0; x < i; x++ ) {
-        total += q.random(1, 6);
+        total += thispage.random(1, 6);
     }
     return total;
 }
-return q.roll_attribute(3);
+
+return thispage.roll_attribute(3);
 ```
 
 Your Dexterity is:
-```javascript
-return q.roll_attribute(3);
+```js
+return thispage.roll_attribute(3);
 ```
 
 Your Constitution is:
-```javascript
-return q.roll_attribute(3);
+```js
+return thispage.roll_attribute(3);
 ```
 
 Your Intelligence is:
-```javascript
-return q.roll_attribute(3);
+```js
+return thispage.roll_attribute(3);
 ```
 Your Wisdom is:
-```javascript
-return q.roll_attribute(3);
+```js
+return thispage.roll_attribute(3);
 ```

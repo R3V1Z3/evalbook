@@ -41,27 +41,38 @@ class EvalBook {
         const container = document.querySelector(el);
         if ( container === null ) return false;
         const codes = container.querySelectorAll('code');
-        codes.forEach(e => {
-            const fn = `(function() {${e.textContent}\n}())`;
-            this.write_results( eval(fn), e );
+        codes.forEach(i => {
+            this.write_results(i);
         });
     }
 
-    write_results(result, el) {
+    write_results(el) {
         let parent = el.parentNode;
         if ( parent === null ) return;
-        if ( result === undefined ) return;
         if ( parent.tagName === 'PRE' ) {
-            // render tags in new P tag if surround by PRE tag
+            // ensure parent has .hljs and .js classes
+            if ( !parent.classList.contains('hljs') ) return;
+            if ( !parent.classList.contains('js') ) return;
+            // render tags in new P tag
             let display = document.createElement('p');
             display.classList.add('result');
-            display.innerHTML = `Result: ${result}`;
+            // create new function for code block
+            const fn = `(function() {${el.textContent}\n}())`;
+            display.innerHTML = `Result: ${eval(fn)}`;
             parent.append(display);
         } else {
+            // only act if inline code block begins with 'js '
+            let code = el.textContent;
+            if ( !code.startsWith('js ') ) return;
+            // strip 'js ' from start
+            code = code.substr(3);
             // render inline
             el.classList.add('result');
-            el.setAttribute('data-code', el.textContent);
-            el.innerHTML = `${result}`;
+            // create new function for code block
+            const fn = `(function() {${code}\n}())`;
+            // store original code in data element in html
+            el.setAttribute('data-code', code);
+            el.innerHTML = `${eval(fn)}`;
         }
         return;
     }
@@ -87,7 +98,7 @@ class EvalBook {
             highlight: function(str, lang) {
                 if (lang && hljs.getLanguage(lang)) {
                     try {
-                        return '<pre class="hljs"><code>' +
+                        return '<pre class="hljs ' + lang + '"><code>' +
                             hljs.highlight(lang, str, true).value +
                             '</code></pre>';
                     }
