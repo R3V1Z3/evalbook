@@ -50,3 +50,7 @@ Dead simple, just fork [the repo](github.com/Ugotsta/evalbook) and edit this Mar
 Yes. Create new Markdown files and access them using the 'content=_yourfile_' url parameter.
 
 Alternatively, a custom 404.html page resolves the url and redirects as needed. So you can create files in the /pages/ folder and access them with a bare url slug, for example: _ugotsta.github.io/evalbook/character_.
+
+### Hasn't this been done before?
+
+Possibly. In fact, after getting started, I realized it uses a very similar approach to [Kajero](https://github.com/JoelOtter/kajero/). Kajero is far more sophisticated, though EvalBook can still be helpful for anyone looking for a simple way to use JavaScript notebooks on GitHub Pags. EvalBook requires no build process; just fork the project, create and edit Markdown documents.
